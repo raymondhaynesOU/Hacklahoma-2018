@@ -197,8 +197,8 @@ public class SearchJob extends GridPane
     {
         for (int i = 0; i < jobs.size(); i++)
         {
-            if (jobs.get(i).getCategory().equalsIgnoreCase(category) && jobs.get(i).isOnline() && 
-                    jobs.get(i).getPaymentMethod() == loggedIn.getPreferredPaymentMethod())
+            if (jobs.get(i).getCategory().equalsIgnoreCase(category) && (jobs.get(i).isOnline() || 
+                    !loggedIn.isOnlineOnly()) && jobs.get(i).getPaymentMethod() == loggedIn.getPreferredPaymentMethod())
             {
                 jobsOneCat.add(jobs.get(i));
             }
