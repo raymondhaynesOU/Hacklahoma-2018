@@ -106,6 +106,10 @@ public class SearchJob extends GridPane
         ComboBox<String> remainingJobs = new ComboBox<String>();
         
         categories.setOnAction(e -> {
+            remainingJobs.getItems().clear();
+            jobsOneCat.clear();
+            description.setText("");
+            
             filterJobs(categories.getValue());
             
             for (int i = 0; i < jobsOneCat.size(); i++)
@@ -116,19 +120,22 @@ public class SearchJob extends GridPane
         add(categories, 0, 0);
         
         remainingJobs.setOnAction(e -> {
-            for (int i = 0; i < jobsOneCat.size(); i++)
+            if (!jobsOneCat.isEmpty())
             {
-                if (remainingJobs.getValue().equals(jobsOneCat.get(i).getName()))
+                for (int i = 0; i < jobsOneCat.size(); i++)
                 {
-                    String jobInfo = "Job Name: " + jobsOneCat.get(i).getName() + "\n";
-                    jobInfo += "Job Description: " + jobsOneCat.get(i).getDescription() + "\n";
-                    jobInfo += "Job Location: " + jobsOneCat.get(i).getLocation() + "\n";
-                    jobInfo += "You will be paid by: " + jobsOneCat.get(i).getPaymentMethod() + "\n";
-                    jobInfo += "Job is online: " + jobsOneCat.get(i).isOnline() + "\n";
-                    jobInfo += "Created by: " + jobsOneCat.get(i).getCreator();
-                    
-                    description.setText(jobInfo);
-                    add(description, 0, 2);
+                    if (remainingJobs.getValue().equals(jobsOneCat.get(i).getName()))
+                    {
+                        String jobInfo = "Job Name: " + jobsOneCat.get(i).getName() + "\n";
+                        jobInfo += "Job Description: " + jobsOneCat.get(i).getDescription() + "\n";
+                        jobInfo += "Job Location: " + jobsOneCat.get(i).getLocation() + "\n";
+                        jobInfo += "You will be paid by: " + jobsOneCat.get(i).getPaymentMethod() + "\n";
+                        jobInfo += "Job is online: " + jobsOneCat.get(i).isOnline() + "\n";
+                        jobInfo += "Created by: " + jobsOneCat.get(i).getCreator();
+                        
+                        description.setText(jobInfo);
+                        add(description, 0, 2);
+                    }
                 }
             }
         });

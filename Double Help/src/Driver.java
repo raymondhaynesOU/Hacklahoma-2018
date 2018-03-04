@@ -24,7 +24,7 @@ public class Driver extends Application
         acs.setLayoutY(10);
         root.getChildren().add(acs);
         
-        Scene scene = new Scene(root, 750, 400);
+        Scene scene = new Scene(root, 850, 450);
         primaryStage.setTitle("Double Help");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
